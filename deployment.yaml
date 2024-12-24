@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-scanner
+  namespace: kubeedge
+  labels:
+    app: pi-scanner
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: pi-scanner
+  template:
+    metadata:
+      labels:
+        app: pi-scanner
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: raspberrypi  
+      containers:
+      - name: pi-scanner
+        image: ovuncertunc/pi-bluetooth
+        securityContext:
+          privileged: true 
+        volumeMounts:
+        - mountPath: /var/run/dbus
+          name: dbus
+        - mountPath: /dev
+          name: dev
+        env:
+        - name: BLE_SCAN_INTERVAL
+          value: "120" 
+      volumes:
+      - name: dbus
+        hostPath:
+          path: /var/run/dbus
+      - name: dev
+        hostPath:
+          path: /dev
