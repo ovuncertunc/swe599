@@ -15,7 +15,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-COPY scanner.py .
+COPY bluetooth_scanner.py .
 
 # Command to run the application
 CMD ["python", "bluetooth_scanner.py"]
