@@ -4,6 +4,8 @@ FROM --platform=linux/arm64 python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y curl
+
 # Copy the requirements file into the container
 COPY requirements.txt .
 
@@ -17,4 +19,4 @@ COPY . .
 EXPOSE 5000
 
 # Define the command to run the application
-CMD ["python", "heavy-load.py"]
+CMD ["python", "matrix_mult.py"]
