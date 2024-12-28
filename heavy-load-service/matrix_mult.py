@@ -30,7 +30,7 @@ try:
             "min": float(result.min())
         }
 
-        print(result_summary)
+        #print(result_summary)
 
 except MemoryError:
     print("Memory limit reached! Free up resources.")

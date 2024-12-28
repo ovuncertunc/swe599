@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: benchmarking-edge
-  namespace: bench-edge
+  name: benchmarking-full-kubernetes
+  namespace: bench-k8s
   labels:
-    app: benchmarking-edge
+    app: benchmarking-full-kubernetes
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: benchmarking-edge
+      app: benchmarking-full-kubernetes
   template:
     metadata:
       labels:
-        app: benchmarking-edge
+        app: benchmarking-full-kubernetes
     spec:
       nodeSelector:
-        kubernetes.io/hostname: kubeedge-edge-node
+        kubernetes.io/hostname: k8s-node
       containers:
       - name: matrix-multiplication
         image: ovuncertunc/matrix_multiplication_amd
