@@ -1,5 +1,5 @@
 import numpy as np
-
+import os
 
 try:
     # In-memory storage with a fixed size
@@ -8,8 +8,9 @@ try:
     matrix_storage = []
     
     while True:
-        a = np.random.rand(500, 500)
-        b = np.random.rand(500, 500)
+        matrix_size = int(os.getenv("MATRIX_SIZE"))
+        a = np.random.rand(matrix_size, matrix_size)
+        b = np.random.rand(matrix_size, matrix_size)
 
         # Perform matrix multiplication
         result = np.dot(a, b)

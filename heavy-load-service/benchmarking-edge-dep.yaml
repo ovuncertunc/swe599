@@ -6,7 +6,7 @@ metadata:
   labels:
     app: benchmarking-edge
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: benchmarking-edge
@@ -22,3 +22,6 @@ spec:
         image: ovuncertunc/matrix_multiplication_amd
         securityContext:
           privileged: true
+        env:
+        - name: MATRIX_SIZE
+          value: "5000"

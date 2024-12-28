@@ -22,3 +22,6 @@ spec:
         image: ovuncertunc/matrix_multiplication_amd
         securityContext:
           privileged: true
+        env:
+        - name: MATRIX_SIZE
+          value: "5000"
