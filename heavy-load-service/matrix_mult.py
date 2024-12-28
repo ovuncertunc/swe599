@@ -1,20 +1,15 @@
-from flask import Flask, jsonify
 import numpy as np
 
-# Create Flask app
-app = Flask(__name__)
 
-# In-memory storage with a fixed size
-MAX_STORAGE_SIZE = 100  # Limit to 100 matrices
-matrix_storage = []
-
-@app.route('/matrix-multiply', methods=['GET'])
-def matrix_multiply():
-    """Endpoint to perform matrix multiplication and manage memory usage."""
-    try:
-        # Generate two random 10000x10000 matrices
-        a = np.random.rand(10000, 10000)
-        b = np.random.rand(10000, 10000)
+try:
+    # In-memory storage with a fixed size
+    MAX_STORAGE_SIZE = 100
+    
+    matrix_storage = []
+    
+    while True:
+        a = np.random.rand(500, 500)
+        b = np.random.rand(500, 500)
 
         # Perform matrix multiplication
         result = np.dot(a, b)
@@ -34,18 +29,7 @@ def matrix_multiply():
             "min": float(result.min())
         }
 
-        # Return the response
-        return jsonify({
-            "status": "success",
-            "result_summary": result_summary,
-            "stored_matrices": len(matrix_storage)
-        }), 200
+        print(result_summary)
 
-    except MemoryError:
-        return jsonify({
-            "status": "error",
-            "message": "Memory limit reached! Free up resources."
-        }), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+except MemoryError:
+    print("Memory limit reached! Free up resources.")

@@ -16,7 +16,7 @@ spec:
         app: pi-scanner
     spec:
       nodeSelector:
-        kubernetes.io/hostname: raspberrypi  
+        kubernetes.io/hostname: raspberry  
       containers:
       - name: pi-scanner
         image: ovuncertunc/pi-bluetooth

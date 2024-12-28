@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: benchmarking-edge-service
+  namespace: bench-edge
+  labels:
+    app: benchmarking-edge
+spec:
+  selector:
+    app: benchmarking-edge
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: http

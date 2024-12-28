@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: benchmarking-edge
+  namespace: bench-edge
+  labels:
+    app: benchmarking-edge
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: benchmarking-edge
+  template:
+    metadata:
+      labels:
+        app: benchmarking-edge
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: kubeedge-edge-node
+      containers:
+      - name: matrix-multiplication
+        image: ovuncertunc/matrix_multiplication_amd
+        securityContext:
+          privileged: true

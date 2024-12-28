@@ -4,7 +4,7 @@ FROM --platform=linux/arm64 python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl && apt-get install -y procps
 
 # Copy the requirements file into the container
 COPY requirements.txt .
@@ -19,4 +19,4 @@ COPY . .
 EXPOSE 5000
 
 # Define the command to run the application
-CMD ["python", "matrix_mult.py"]
+CMD ["python", "-u", "matrix_mult.py"]
